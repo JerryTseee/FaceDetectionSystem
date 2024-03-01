@@ -38,7 +38,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
     // PreDefined trained XML classifiers with facial features
     CascadeClassifier cascade, nestedCascade;
     //try scale range 0.1 to 2
-    double scale = 1;//scale parameter controls the resizing of the input image during face detection. Adjusting this value can impact the detection performance.
+    double scale = 5;//scale parameter controls the resizing of the input image during face detection. Adjusting this value can impact the detection performance.
     /*
     Increasing the scale factor makes the algorithm more sensitive to detecting smaller faces.
     help detect faces that are farther away or occupy a smaller portion of the image.
@@ -55,7 +55,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
 
 
     // To capture Video from WebCam replace the path with 0, else edit the path
-    capture.open("C:\\Users\\admin\\Videos\\cindy2.mp4");
+    capture.open("C:\\Users\\admin\\Videos\\cindy3.mp4");
     if (capture.isOpened())//check whether the file is successfully opened
     {
         // Capturing frames from the video
@@ -93,7 +93,7 @@ void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedC
 
     // To convert the frames to gray color for better face detection
     cvtColor(img, gray, COLOR_BGR2GRAY);
-    double fx = 2 / scale;//fx>1: upsampling the image. fx<1: downsampling the image.
+    double fx = 1 / scale;//fx>1: upsampling the image. fx<1: downsampling the image.
 
 
     // To resize the frames, smallImg matrix will contain the resized image.
@@ -121,7 +121,7 @@ void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedC
         Mat smallImgROI;
         vector<Rect> nestedObjects;
         Point center;
-        Scalar color = Scalar(255, 0, 0);
+        Scalar color = Scalar(255, 100, 180);//this is for the circle color :), this is pink!
         int radius;
 
 
