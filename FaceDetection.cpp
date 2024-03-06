@@ -5,15 +5,20 @@
 //The highgui module provides functions for creating graphical user interfaces (GUIs) and handling input/output operations. It includes functions for displaying images, creating windows, capturing video from cameras, and handling keyboard/mouse events.
 #include "C:\opencv\build\include\opencv2\highgui\highgui.hpp"
 
+//this header provides functionality for deep neural network (DNN) based operations
+#include "C:\opencv\build\include\opencv2\dnn\dnn.hpp"
+
+
 //image processing functions. It includes operations like resizing, filtering, edge detection, color conversion, and geometric transformations.
 #include "C:\opencv\build\include\opencv2\imgproc\imgproc.hpp"
+#include <vector>
 #include <iostream>
 using namespace std;
 using namespace cv;//use functions and classes from the OpenCV library
 
 
 // Function Declaration to detect face in an image using OpenCV
-void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedCascade, double scale);
+void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedCascade, double scale, dnn::Net& ageNet);
 
 string cascadeName, nestedCascadeName;
 
@@ -30,6 +35,8 @@ nestedCascadeName: Similarly, this string variable likely holds the path or name
 
 int main(int argc, const char** argv)//argc and argv allow you to handle command-line arguments
 {
+    dnn::Net ageNet;
+    ageNet = dnn::readNetFromCaffe("D:\\HKU_Resources\\C++tutorials\\C++training\\FaceDetection\\age_deploy.prototxt", "D:\\HKU_Resources\\C++tutorials\\C++training\\FaceDetection\\age_net.caffemodel");
     // Class for video capturing from video files & provides C++ API for capturing video from cameras or reading video files.
     VideoCapture capture;//VideoCapture class in OpenCV is used for capturing video frames from video files or cameras.
     Mat frame, image;//declare two OpenCV matrices 
@@ -38,7 +45,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
     // PreDefined trained XML classifiers with facial features
     CascadeClassifier cascade, nestedCascade;
     //try scale range 0.1 to 2
-    double scale = 5;//scale parameter controls the resizing of the input image during face detection. Adjusting this value can impact the detection performance.
+    double scale = 3;//scale parameter controls the resizing of the input image during face detection. Adjusting this value can impact the detection performance.
     /*
     Increasing the scale factor makes the algorithm more sensitive to detecting smaller faces.
     help detect faces that are farther away or occupy a smaller portion of the image.
@@ -55,7 +62,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
 
 
     // To capture Video from WebCam replace the path with 0, else edit the path
-    capture.open("C:\\Users\\admin\\Videos\\cindy3.mp4");
+    capture.open("C:\\Users\\admin\\Videos\\cindy2.mp4");
     if (capture.isOpened())//check whether the file is successfully opened
     {
         // Capturing frames from the video
@@ -70,7 +77,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
             Mat frame1 = frame.clone();
 
             // Calling the detect face function
-            detectFace(frame1, cascade, nestedCascade, scale);//to detect faces in the cloned frame using the specified cascade classifiers (cascade and nestedCascade).
+            detectFace(frame1, cascade, nestedCascade, scale, ageNet);//to detect faces in the cloned frame using the specified cascade classifiers (cascade and nestedCascade).
             
 
             char c = (char)waitKey(10);//The program waits for a key press
@@ -86,7 +93,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
 
 
 // Defination of Detect face function
-void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedCascade, double scale)
+void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedCascade, double scale, dnn::Net& ageNet)
 {
     vector<Rect> faces, faces2;
     Mat gray, smallImg;//Mat gray, smallImg;: These matrices are used for intermediate processing steps. gray is typically a grayscale version of the input image, and smallImg is a resized version of the image.
@@ -145,7 +152,18 @@ void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedC
             continue;//next detected face
         smallImgROI = smallImg(r);
 
-
+        //Age estimation part:
+        Mat faceROI = img(r);//extract the face region from the image
+        //process the face ROI
+        Mat blob = dnn::blobFromImage(faceROI, 1.0, Size(227, 227), Scalar(78.4263377603, 87.7689143744, 114.895847746), false);
+        ageNet.setInput(blob);
+        //perform forward pass and get the predicted age
+        Mat agePreds = ageNet.forward();
+        int ageClass = max_element(agePreds.begin<float>(), agePreds.end<float>()) - agePreds.begin<float>();
+        //display the predicted age
+        string ageLabel = "Age: " + std::to_string(ageClass);
+        putText(img, ageLabel, Point(img.cols/2, img.rows/2), FONT_HERSHEY_SIMPLEX, 0.9, Scalar(0, 255, 0), 2);
+        //Point here is to draw the location of the display age label
     }
 
 
