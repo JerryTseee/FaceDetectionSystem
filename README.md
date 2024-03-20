@@ -3,6 +3,7 @@ implement a face detection system by using OpenCV in C++
 
 environment configuration: make sure to download OpenCV and Visual Studio in the computer.(eg. in here, my OpenCV file path is "C:\opencv")  
 Below are the instructions in my case, please kindly modify them by yourselves.  
+The Project is conducted in Visual Studio 2022  
 
 In the Visual Studio:
 open Project Property Pages -> configuration properties -> debugging -> environment -> add the path: PATH=%PATH%;C:\opencv\build\x64\vc16\bin  
