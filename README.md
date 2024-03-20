@@ -6,6 +6,7 @@ Below are the instructions in my case, please kindly modify them by yourselves.
 
 In the Visual Studio:
 open Project Property Pages -> configuration properties -> debugging -> environment -> add the path: PATH=%PATH%;C:\opencv\build\x64\vc16\bin  
+  
 go to VC++ Directories -> include Directories -> add: C:\opencv\build\include;  
 go to vc++ Directories -> Library Directories -> add: C:\opencv\build\x64\vc16\lib;  
 go to C/C++ -> General -> Additional Include Directories -> add: C:\opencv\build\include;  
