@@ -5,7 +5,7 @@ environment configuration: make sure to download OpenCV and Visual Studio in the
 Below are the instructions in my case, please kindly modify them by yourselves.  
 The Project is conducted in Visual Studio 2022  
 
-In the Visual Studio:
+Visual Studio 2022 Environment Configuration   
 open Project Property Pages -> configuration properties -> debugging -> environment -> add the path: PATH=%PATH%;C:\opencv\build\x64\vc16\bin  
   
 go to VC++ Directories -> include Directories -> add: C:\opencv\build\include;  
