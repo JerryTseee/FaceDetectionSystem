@@ -15,5 +15,7 @@ go to Linker -> General -> Additional Library Directories -> add: C:\opencv\buil
 go to Linker -> Input -> Additional Dependencies -> add: opencv_world490d.lib;  
 
 
-  <img width="344" alt="image" src="https://github.com/JerryTseee/FaceDetectionSystem/assets/126223772/d1170873-0ef3-4e35-a634-ddd167bd0bb0">  
+
+Below is the testing result (age estimation is not accurate enough)     
+<img width="344" alt="image" src="https://github.com/JerryTseee/FaceDetectionSystem/assets/126223772/d1170873-0ef3-4e35-a634-ddd167bd0bb0">  
   
