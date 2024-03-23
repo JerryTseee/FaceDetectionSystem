@@ -89,7 +89,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
 
             char key = waitKey(1);//The program waits for a key press
             // Press q to exit from the window
-            if (key == 'q' || key == 'Q')//If the pressed key is ¡¥q¡¦ or ¡¥Q¡¦, the loop breaks, allowing the user to exit the window.
+            if (key == 'q' || key == 'Q')//If the pressed key is Â¡Â¥qÂ¡Â¦ or Â¡Â¥QÂ¡Â¦, the loop breaks, allowing the user to exit the window.
                 break;
         }
     }
