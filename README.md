@@ -13,3 +13,7 @@ go to vc++ Directories -> Library Directories -> add: C:\opencv\build\x64\vc16\l
 go to C/C++ -> General -> Additional Include Directories -> add: C:\opencv\build\include;  
 go to Linker -> General -> Additional Library Directories -> add: C:\opencv\build\x64\vc16\lib;  
 go to Linker -> Input -> Additional Dependencies -> add: opencv_world490d.lib;  
+
+
+  <img width="344" alt="image" src="https://github.com/JerryTseee/FaceDetectionSystem/assets/126223772/d1170873-0ef3-4e35-a634-ddd167bd0bb0">  
+  
