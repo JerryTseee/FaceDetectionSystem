@@ -37,7 +37,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
 {
     dnn::Net ageNet;//declare a variable named ageNet of type dnn::Net, it represents the neural network model for age estimation.
     //then, we load the pre-trained network from the Caffe framework.(Caffe is a deep learning framework that allow people to train neural networks for different tasks)
-    ageNet = dnn::readNetFromCaffe("D:\\HKU_Resources\\C++tutorials\\C++training\\FaceDetection\\gender_deploy.prototxt", "D:\\HKU_Resources\\C++tutorials\\C++training\\FaceDetection\\gender_net.caffemodel");//"age_deploy.prototxt" file contains the architecture of the neural network. "age_net.caffemodel" file contains the learned weights and parameters of the neural network.
+    ageNet = dnn::readNetFromCaffe("D:\\HKU_Resources\\C++tutorials\\C++training\\FaceDetection\\age_deploy.prototxt", "D:\\HKU_Resources\\C++tutorials\\C++training\\FaceDetection\\age_net.caffemodel");//"age_deploy.prototxt" file contains the architecture of the neural network. "age_net.caffemodel" file contains the learned weights and parameters of the neural network.
     
     // Class for video capturing from video files & provides C++ API for capturing video from cameras or reading video files.
     Mat frame, image;//declare two OpenCV matrices 
@@ -89,7 +89,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
 
             char key = waitKey(1);//The program waits for a key press
             // Press q to exit from the window
-            if (key == 'q' || key == 'Q')//If the pressed key is Â¡Â¥qÂ¡Â¦ or Â¡Â¥QÂ¡Â¦, the loop breaks, allowing the user to exit the window.
+            if (key == 'q' || key == 'Q')//If the pressed key is ¡¥q¡¦ or ¡¥Q¡¦, the loop breaks, allowing the user to exit the window.
                 break;
         }
     }
@@ -103,7 +103,7 @@ int main(int argc, const char** argv)//argc and argv allow you to handle command
 void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedCascade, double scale, dnn::Net& ageNet)
 {
     vector<Rect> faces;
-    Mat gray, smallImg;//Mat gray, smallImg;: These matrices are used for intermediate processing steps. gray is typically a grayscale version of the input image, and smallImg is a resized version of the image.
+    Mat gray,smallImg;//Mat gray, smallImg;: These matrices are used for intermediate processing steps. gray is typically a grayscale version of the input image, and smallImg is a resized version of the image.
 
     // To convert the frames to gray color for better face detection
     cvtColor(img, gray, COLOR_BGR2GRAY);
