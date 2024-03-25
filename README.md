@@ -1,5 +1,5 @@
 # FaceDetectionSystem  
-implement a face detection system by using OpenCV in C++  
+implement a face detection system with Haar Cascade Algorithm, by using OpenCV in C++  
 
 environment configuration: make sure to download OpenCV and Visual Studio in the computer.(eg. in here, my OpenCV file path is "C:\opencv")  
 Below are the instructions in my case, please kindly modify them by yourselves.  
