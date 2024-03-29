@@ -18,4 +18,6 @@ go to Linker -> Input -> Additional Dependencies -> add: opencv_world490d.lib;
 
 Below is the testing result (age estimation is not accurate enough)     
 <img width="344" alt="image" src="https://github.com/JerryTseee/FaceDetectionSystem/assets/126223772/d1170873-0ef3-4e35-a634-ddd167bd0bb0">  
-  
+
+Problem fixed: upload the wrong "age_deploy.prototxt" and "age_net.caffemodel"  
+<img width="347" alt="image" src="https://github.com/JerryTseee/FaceDetectionSystem/assets/126223772/96305725-05a6-4fc4-ae8f-39936aec24ce">
