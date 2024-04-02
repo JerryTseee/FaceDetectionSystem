@@ -21,3 +21,6 @@ Below is the testing result (age estimation is not accurate enough)
 
 Problem fixed: upload the wrong "age_deploy.prototxt" and "age_net.caffemodel"  :( but still not that good
 <img width="347" alt="image" src="https://github.com/JerryTseee/FaceDetectionSystem/assets/126223772/96305725-05a6-4fc4-ae8f-39936aec24ce">
+
+Since the model is not accurate, the age number will need to add back around 20  
+<img width="352" alt="image" src="https://github.com/JerryTseee/FaceDetectionSystem/assets/126223772/d6818f32-3e33-4685-a9ac-03b320911530">
