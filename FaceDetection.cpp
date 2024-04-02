@@ -169,6 +169,10 @@ void detectFace(Mat& img, CascadeClassifier& cascade, CascadeClassifier& nestedC
         //perform forward pass and get the predicted age
         Mat agePreds = ageNet.forward();
         int ageClass = max_element(agePreds.begin<float>(), agePreds.end<float>()) - agePreds.begin<float>();
+
+        //since the model is not that accurate, I will manually add  back around 20
+        ageClass += 20;
+
         //display the predicted age
         string ageLabel = "Age: " + to_string(ageClass);
         putText(img, ageLabel, Point(img.cols/2, img.rows/2), FONT_HERSHEY_SIMPLEX, 0.9, Scalar(0, 255, 0), 2);
